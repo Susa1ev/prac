@@ -1,53 +1,36 @@
 ﻿using System;
 
-namespace prac1._2_console_
+namespace prac1_console_
 {
-    class Prac
+    class Circle
     {
-        private int a, b;
-        private string chislo;
-        private char[] bukva;
-        private void inner()
+        private double Radius = 0.0;
+        private double Area = 0.0;
+        private double Pi = Math.PI;
+        public Circle()
         {
-            Console.Write("Введите трёхзначное число:");
-            chislo = Console.ReadLine();
+            fillArea();
+            showCircle();
         }
-        private void sravnenie()
+
+        public void fillArea()
         {
-            if (Int32.TryParse(chislo, out a) && chislo.Length == 3)
-            {
-                bukva = chislo.ToCharArray();
-                a = Int32.Parse(bukva[0].ToString());
-                b = Int32.Parse(bukva[1].ToString());
-                if (a > b)
-                {
-                    Console.WriteLine("Первая цифра(" + a + ") больше второй(" + b + ")");
-                }
-                else if (a < b)
-                {
-                    Console.WriteLine("Вторая цифра(" + b + ") больше первой(" + a + ")");
-                }
-                else if (a == b)
-                {
-                    Console.WriteLine("Первая цифра(" + a + ") равна второй(" + b + ")");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели не трёхзначное число");
-            }
+            Console.Write("Введите площадь окружности: ");
+            Double.TryParse(Console.ReadLine(), out Area);
         }
-        public Prac()
+        public void showCircle()
         {
-            inner();
-            sravnenie();            
+            Radius = Math.Sqrt(Area / Pi);
+            Console.Write("R = (" + Area + "/Пи)^1/2 = " + Radius);
         }
+
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Prac prac = new Prac();
+            Circle circle = new Circle();
+            Console.ReadKey();
         }
     }
 }
