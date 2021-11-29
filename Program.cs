@@ -1,36 +1,53 @@
 ﻿using System;
 
-namespace prac1_console_
+namespace prac1._2_console_
 {
-    class Circle
+    class Prac
     {
-        private double Radius = 0.0;
-        private double Area = 0.0;
-        private double Pi = Math.PI;
-        public Circle()
+        private int a, b;
+        private string chislo;
+        private char[] bukva;
+        private void inner()
         {
-            fillArea();
-            showCircle();
+            Console.Write("Введите трёхзначное число:");
+            chislo = Console.ReadLine();
         }
-
-        public void fillArea()
+        private void sravnenie()
         {
-            Console.Write("Введите площадь окружности: ");
-            Double.TryParse(Console.ReadLine(), out Area);
+            if (Int32.TryParse(chislo, out a) && chislo.Length == 3)
+            {
+                bukva = chislo.ToCharArray();
+                a = Int32.Parse(bukva[0].ToString());
+                b = Int32.Parse(bukva[1].ToString());
+                if (a > b)
+                {
+                    Console.WriteLine("Первая цифра(" + a + ") больше второй(" + b + ")");
+                }
+                else if (a < b)
+                {
+                    Console.WriteLine("Вторая цифра(" + b + ") больше первой(" + a + ")");
+                }
+                else if (a == b)
+                {
+                    Console.WriteLine("Первая цифра(" + a + ") равна второй(" + b + ")");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели не трёхзначное число");
+            }
         }
-        public void showCircle()
+        public Prac()
         {
-            Radius = Math.Sqrt(Area / Pi);
-            Console.Write("R = (" + Area + "/Пи)^1/2 = " + Radius);
+            inner();
+            sravnenie();            
         }
-
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Circle circle = new Circle();
-            Console.ReadKey();
+            Prac prac = new Prac();
         }
     }
 }
